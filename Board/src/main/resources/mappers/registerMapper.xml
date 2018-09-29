@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.js.mapper.registerMapper">
+	<insert id="register">
+		insert into tbl_login(id, pw, email,name) 
+		values(#{id},#{pw},#{email},#{name})
+	</insert>
+	<select id="idck" parameterType="String" resultType="Integer">
+      SELECT COUNT(*) FROM tbl_login
+      WHERE id = #{id}
+	</select>
+	<select id="emailck" parameterType="String" resultType="Integer">
+      SELECT COUNT(*) FROM tbl_login
+      WHERE email = #{email}
+	</select>
+	<select id="findid" parameterType="String" resultType="com.inhatc.domain.RegisterVO">
+      SELECT * FROM tbl_login
+      WHERE email = #{email} and name=#{name}
+	</select>
+	<select id="findpw" parameterType="String" resultType="com.inhatc.domain.RegisterVO">
+      SELECT * FROM tbl_login
+      WHERE email = #{email} and name=#{name} and id=#{id}
+	</select>
+</mapper>

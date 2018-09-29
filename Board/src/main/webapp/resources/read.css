@@ -1,0 +1,268 @@
+hr{
+    margin-right: 95px;
+    color:#1278ed;
+}
+@media (max-width:1280px){
+    hr{
+        margin-right: 95px;
+        color:#1278ed;
+        width: 94.5%;
+    }
+}
+#reghit{
+    position: absolute;
+    top: 154px;
+    left: 1600px;
+}
+@media (max-width:1280px){
+    #reghit{
+        position: absolute;
+        top: 154px;
+        left: 1005px;
+    }
+}
+#input{
+    width: 1603.63px;
+    height: 606px;
+}
+@media (max-width:1280px){
+    #input{
+        width: 1068px;
+        height: 606px;
+    }
+}
+#writetext{
+    width: 1604.63px;
+    height: 606px;
+}
+@media (max-width:1280px){
+    #writetext{
+        width: 1070px;
+        height: 606px;
+    }
+}
+#btnlist{
+    float:right;
+    margin-right:131px;
+}
+@media (max-width:1280px){
+    #btnlist{
+        float:right;
+        margin-right:85px;
+    }
+}
+#btnlist button{
+    transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+    padding: 7px 15px;
+    margin: 20px auto;
+    border-radius: 4px;
+    border:0px;
+    width: 60px;
+    height: 42px;
+    color: rgba(30, 22, 54, 0.6);
+    box-shadow: rgba(30, 22, 54, 0.4) 0 0px 0px 2px inset;
+    background:white;
+}
+#btnlist button:hover {
+    color: rgba(255, 255, 255, 0.85);
+    box-shadow: #1278ed 0 0px 0px 40px inset;
+}
+#nocomment{
+    margin-left: 150px;
+    font-size:15px; 
+    text-align:left; 
+    background:#dbdfe4;
+    width: 85.2%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+@media (max-width:1280px){
+    #nocomment{
+        margin-left: 100px;
+        font-size:15px; 
+        text-align:left; 
+        background:#dbdfe4;
+        width: 85.2%;
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+}
+#nocomment label{
+    margin-left:1.9%;
+}
+#comment{
+    font-size:15px; 
+    text-align:left; 
+    margin-left:150px; 
+    margin-top: -16px;
+    background:#dbdfe4;
+    width: 85.2%;
+    height: 82px;
+}
+@media (max-width:1280px){
+    #comment{
+        font-size:15px; 
+        text-align:left; 
+        margin-left:100px; 
+        margin-top: -16px;
+        background:#dbdfe4;
+        width: 85.2%;
+        height: 82px;
+    }
+}
+#comment textarea{
+    margin-top: 20px;
+    margin-right: 10px;
+    margin-left: 2%;
+    font-size:18px;
+    border:0px;
+    resize: none;
+    width: 1000px;
+}
+@media (max-width:1280px){
+    #comment textarea{
+        margin-top: 20px;
+        margin-right: 10px;
+        margin-left: 2%;
+        font-size:18px;
+        border:0px;
+        resize: none;
+        width: 800px;
+    }
+}
+
+#comment label{
+    margin-right: 10px;
+    display: inline-block;
+    margin-top: -40px;
+}
+#comment button{
+    transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+    padding: 7px 15px;
+    margin: 20px auto;
+    border-radius: 4px;
+    border:0px;
+    width: 60px;
+    height: 42px;
+    color: rgba(30, 22, 54, 0.6);
+    box-shadow: rgba(30, 22, 54, 0.4) 0 0px 0px 2px inset;
+    background:white;
+    display: inline-block;
+    margin-top: -80px;
+}
+#comment button:hover {
+    color: rgba(255, 255, 255, 0.85);
+    box-shadow: #1278ed 0 0px 0px 40px inset;
+}
+#commentin{
+    width: 85.2%;
+    margin: 0 auto;
+    margin-left: 150px;
+    background: #dbdfe4;
+}
+@media (max-width:1280px){
+    #commentin{
+        width: 85.2%;
+        margin: 0 auto;
+        margin-left: 100px;
+        background: #dbdfe4;
+    }
+}
+#commentin input{
+    margin-left: 1.9%;
+    width: 500px;
+    height: 30px;
+    margin-right: 10px;
+}
+#commentin textarea{
+    margin-top: 20px;
+    margin-left: 2%;
+    font-size:18px;
+    border:0px;
+    resize: none;
+    width: 1000px;
+}
+@media (max-width:1280px){
+    #commentin textarea{
+        margin-top: 20px;
+        margin-right: 10px;
+        margin-left: 2%;
+        font-size:18px;
+        border:0px;
+        resize: none;
+        width: 800px;
+    }
+}
+#commentin button{
+    transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+    padding: 7px 15px;
+    margin: 20px auto;
+    border-radius: 4px;
+    border:0px;
+    width: 60px;
+    height: 42px;
+    color: rgba(30, 22, 54, 0.6);
+    box-shadow: rgba(30, 22, 54, 0.4) 0 0px 0px 2px inset;
+    background:white;
+    width: 112px;
+    height: 60px;
+
+display: inline-block;
+
+margin-top: -100px;
+}
+#commentin button:hover {
+    color: rgba(255, 255, 255, 0.85);
+    box-shadow: #1278ed 0 0px 0px 40px inset;
+}
+#write{
+    margin-top:20px
+}
+#write input,#write textarea{
+    width:94.4%;
+    resize: none;
+}
+#write button{
+    transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+    padding: 7px 15px;
+    margin: 20px auto;
+    border-radius: 4px;
+    border:0px;
+    width: 60px;
+    height: 42px;
+    color: rgba(30, 22, 54, 0.6);
+    box-shadow: rgba(30, 22, 54, 0.4) 0 0px 0px 2px inset;
+    background:white;
+}
+#write button:hover {
+    color: rgba(255, 255, 255, 0.85);
+    box-shadow: #1278ed 0 0px 0px 40px inset;
+}
+
+.selbox{
+    margin-left: 150px !important;
+    margin-top: 80px;
+    height:30px;
+    margin-bottom: 20px;
+}
+@media (max-width:1280px){
+    .selbox{
+        margin-left: 100px !important;
+        margin-top: 80px;
+        height:30px;
+        margin-bottom: 20px;
+    }
+}
+
+#wrbtn{
+    float:right; 
+    position:relative; 
+    margin-right: 94px;
+}
+@media (max-width:1280px){
+    #wrbtn{
+        float:right; 
+        position:relative; 
+        margin-right: 64px;
+    }
+}

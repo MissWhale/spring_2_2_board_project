@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.js.mapper.CommentMapper">
+	<select id="commentSearch" resultType="com.inhatc.domain.CommentVO">
+		<![CDATA[
+			select * from tbl_comment
+			where bno = #{bno}
+		]]>
+	</select>
+	<insert id="commentInsert">
+		insert into tbl_comment(com_cont, bno,id)
+		values(#{com_cont}, #{bno},#{id})
+	</insert>
+	<update id="commentUpdate">
+		update tbl_comment
+		set
+		com_cont = #{com_cont}
+		where
+		com_no = #{com_no}
+	</update>
+	<delete id="commentDelete">
+		delete from tbl_comment
+		where com_no = #{com_no}
+	</delete>
+</mapper>

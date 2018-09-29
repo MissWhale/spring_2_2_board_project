@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.js.mapper.BoardMapper">
+	<select id="allSelect" resultType="com.inhatc.domain.BoardVO">
+		<![CDATA[
+			select * from tbl_board
+			order by bno desc
+		]]>
+	</select>
+	<select id="read" resultType="com.inhatc.domain.BoardVO">
+		select * from tbl_board
+		where bno = #{bno}
+	</select>
+	<update id="add_hits">
+		update tbl_board
+		set
+		hits = hits + 1
+		where bno = #{bno}
+	</update>
+	<delete id="delete_post">
+		delete from tbl_board
+		where bno = #{bno}
+	</delete>
+	<update id="update_post">
+		update tbl_board
+		set
+		title = #{title},
+		id = #{id},
+		body = #{body}
+		where bno = #{bno}
+	</update>
+	<insert id="write_post">
+		insert into tbl_board(title, id, body,language) 
+		values(#{title}, #{id}, #{body},#{language})
+	</insert>
+	<select id="getCount" resultType="java.lang.Integer">
+		select count(*) from tbl_board;
+	</select>
+	<select id="selectPage" resultType="com.inhatc.domain.BoardVO">
+		select * from tbl_board
+		order by bno desc
+		limit #{start}, #{end}
+	</select>
+	<select id="search_board" resultType="com.inhatc.domain.BoardVO">
+		select *
+		from tbl_board
+		<where>
+			<if test="searchType != null">
+				<if test="search != null">
+					<if test="searchType eq 'id'">
+						id like CONCAT('%',#{search},'%')
+					</if>
+					<if test="searchType eq 'title'">
+						title like CONCAT('%',#{search},'%')
+					</if>
+				</if>
+			</if>
+		</where>
+		order by bno desc
+		limit #{start}, #{end}
+	</select>
+	<select id="search_board_count" resultType="java.lang.Integer">
+		select count(*)
+		from tbl_board
+		<where>
+			<if test="searchType != null">
+				<if test="search != null">
+					<if test="searchType eq 'id'">
+						id like CONCAT('%',#{search},'%')
+					</if>
+					<if test="searchType eq 'title'">
+						title like CONCAT('%',#{search},'%')
+					</if>
+				</if>
+			</if>
+		</where>
+	</select>
+</mapper>
