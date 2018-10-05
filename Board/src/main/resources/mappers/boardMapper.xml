@@ -29,12 +29,13 @@
 		set
 		title = #{title},
 		id = #{id},
-		body = #{body}
+		body = #{body},
+		code=#{code}
 		where bno = #{bno}
 	</update>
 	<insert id="write_post">
-		insert into tbl_board(title, id, body,language) 
-		values(#{title}, #{id}, #{body},#{language})
+		insert into tbl_board(title, id, body,language,code) 
+		values(#{title}, #{id}, #{body},#{language},#{code})
 	</insert>
 	<select id="getCount" resultType="java.lang.Integer">
 		select count(*) from tbl_board;

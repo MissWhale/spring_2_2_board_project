@@ -5,51 +5,47 @@
 <%@ page session="false"%>
 <html>
 <head>
-<!-- <%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/views/board/design.css" type="text/css" media="screen"/> --%> -->
-<link rel="stylesheet" href="/resources/design.css" type="text/css"media="screen" />
-<title>기초적인 게시판</title>
-<style>
-.clear {
-	clear: both;
-}
+	<link rel="stylesheet" href="/resources/design.css" type="text/css"media="screen" />
+	<title>코드 공유 게시판</title>
+	<style>
+		.clear {
+			clear: both;
+		}
 
-td:nth-child(1), td:nth-child(3), td:nth-child(4), td:nth-child(5),td:nth-child(6)  {
-	width: 10%;
-}
+		td:nth-child(1), td:nth-child(3), td:nth-child(4), td:nth-child(5),td:nth-child(6)  {
+			width: 10%;
+		}
 
-th:nth-child(1), th:nth-child(3), th:nth-child(4), th:nth-child(5),th:nth-child(6) {
-	width: 10%;
-}
+		th:nth-child(1), th:nth-child(3), th:nth-child(4), th:nth-child(5),th:nth-child(6) {
+			width: 10%;
+		}
 
-a {
-	text-decoration: none;
-}
+		a {
+			text-decoration: none;
+		}
 
-select {
-	width: 100px;
-	font-size: 16px;
-}
+		select {
+			width: 100px;
+			font-size: 16px;
+		}
 
-input[type="submit"] {
-	width: 90px;
-}
+		input[type="submit"] {
+			width: 90px;
+		}
 
-a+div>form>* {
-	display: inline;
-	vertical-align: middle;
-	height: 27px;
-}
-
-/* a+div {
-	margin-top: 25px !important;
-} */
-</style>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+		a+div>form>* {
+			display: inline;
+			vertical-align: middle;
+			height: 27px;
+		}
+	</style>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 	<div>
 		<div id="top">
-			<a href="/" id="logo">웹 코드 에디터</a>
+			<a href="/" id="logo"><img src="/resources/logo.png" ></a>
+			<!-- <img src="/resources/logo.png" > -->
 			<div id="btn">
 				<c:choose>
 					<c:when test='${session == "yes"}'>
@@ -65,12 +61,8 @@ a+div>form>* {
 		</div>
 	</div>
 
-	<img src="/resources/main.jpg">
+	<img id="main" src="/resources/main.jpg">
 	<div id='cssmenu'>
-		<!-- <ul>
-		   <li class='active'><a href='/'><span>공지사항</span></a></li>
-		   <li><a href='#'><span>코드게시판</span></a></li>
-		</ul> -->
 	</div>
 	<div id="search">
 		<form method="get">
@@ -92,7 +84,7 @@ a+div>form>* {
 	</div>
 	<br />
 	<div style="width: 85%; margin-left:8%;">
-		<table class="mytable" style="width: 100%;margin-top:-1%">
+		<table class="mytable" style="width: 100%;margin-top:-2.5%">
 			<thead>
 				<tr style="height: 40px; border-bottom: 3px solid black;">
 					<th>번호</th>
@@ -143,6 +135,9 @@ a+div>form>* {
 										</c:when>
 										<c:when test="${board.language == '11'}">
 											<td>SQL</td>
+										</c:when>
+										<c:when test="${board.language == '12'}">
+											<td>AutoHotkey</td>
 										</c:when>
 								</c:choose>
 								<td>${board.id}</td>
@@ -245,12 +240,10 @@ a+div>form>* {
 					} 
 				}); 
 			});
-		// console.log('${pager.currentPageNo}');
 		if($('.textbox input[type="text"]').val()!=''){
 			$('.textbox input[type="text"]').siblings('label').fadeOut('fast'); 
 		};
 		var target="."+${pager.currentPageNo}
-		// console.log(target);
 		$(target).css("color","#fff");
 		$(target).css("background","#1278ed");
 		$(target).css("border","#1px solid #4c8500");

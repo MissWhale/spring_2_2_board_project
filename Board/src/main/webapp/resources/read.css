@@ -31,12 +31,48 @@ hr{
         height: 606px;
     }
 }
-#writetext{
+#writebody{
+    width: 1604.63px;
+    height: 200px;
+    max-height: 400px;
+    resize: none;
+    margin-bottom: 20px;
+    border-width: 0px;
+    background: #FEFAE2;
+}
+@media (max-width:1280px){
+    #writebody{
+        width: 1070px;
+        height: 200px;
+        max-height: 400px;
+        resize: none;
+        margin-bottom: 20px;
+        border-width: 0px;
+        background: #FEFAE2;
+    }
+}
+#writebody1{
+    width: 1604.63px;
+    height: 200px;
+    max-height: 400px;
+    resize: none;
+    margin-bottom: 20px;
+}
+@media (max-width:1280px){
+    #writebody{
+        width: 1062px;
+        height: 200px;
+        max-height: 400px;
+        resize: none;
+        margin-bottom: 20px;
+    }
+}
+#writecode{
     width: 1604.63px;
     height: 606px;
 }
 @media (max-width:1280px){
-    #writetext{
+    #writecode{
         width: 1070px;
         height: 606px;
     }
@@ -97,7 +133,8 @@ hr{
     margin-top: -16px;
     background:#dbdfe4;
     width: 85.2%;
-    height: 82px;
+    height: auto;
+    max-height: 400px;
 }
 @media (max-width:1280px){
     #comment{
@@ -107,7 +144,7 @@ hr{
         margin-top: -16px;
         background:#dbdfe4;
         width: 85.2%;
-        height: 82px;
+        max-height: 400px;
     }
 }
 #comment textarea{
@@ -117,7 +154,9 @@ hr{
     font-size:18px;
     border:0px;
     resize: none;
-    width: 1000px;
+    width: 1350px;
+    max-height: 360px;
+    margin-bottom: 20px;
 }
 @media (max-width:1280px){
     #comment textarea{
@@ -128,18 +167,19 @@ hr{
         border:0px;
         resize: none;
         width: 800px;
+        max-height: 360px;
+        margin-bottom: 20px;
     }
 }
 
 #comment label{
     margin-right: 10px;
     display: inline-block;
-    margin-top: -40px;
+    margin-top: -45px;
 }
 #comment button{
     transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
     padding: 7px 15px;
-    margin: 20px auto;
     border-radius: 4px;
     border:0px;
     width: 60px;
@@ -148,7 +188,7 @@ hr{
     box-shadow: rgba(30, 22, 54, 0.4) 0 0px 0px 2px inset;
     background:white;
     display: inline-block;
-    margin-top: -80px;
+    margin-top: -75px;
 }
 #comment button:hover {
     color: rgba(255, 255, 255, 0.85);
@@ -180,7 +220,8 @@ hr{
     font-size:18px;
     border:0px;
     resize: none;
-    width: 1000px;
+    width: 1350px;
+    max-height: 500px;
 }
 @media (max-width:1280px){
     #commentin textarea{
@@ -191,6 +232,7 @@ hr{
         border:0px;
         resize: none;
         width: 800px;
+        max-height: 500px;
     }
 }
 #commentin button{
@@ -205,11 +247,8 @@ hr{
     box-shadow: rgba(30, 22, 54, 0.4) 0 0px 0px 2px inset;
     background:white;
     width: 112px;
-    height: 60px;
-
-display: inline-block;
-
-margin-top: -100px;
+    margin-top: -75px;
+    display: inline-block;
 }
 #commentin button:hover {
     color: rgba(255, 255, 255, 0.85);
@@ -248,7 +287,7 @@ margin-top: -100px;
 @media (max-width:1280px){
     .selbox{
         margin-left: 100px !important;
-        margin-top: 80px;
+        margin-top: 50px;
         height:30px;
         margin-bottom: 20px;
     }

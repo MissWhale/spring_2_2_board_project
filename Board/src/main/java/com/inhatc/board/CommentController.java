@@ -34,6 +34,7 @@ public class CommentController {
 	@RequestMapping(value = "/commentInput", method = RequestMethod.POST)
 	public @ResponseBody Object commentInput(Model model, CommentVO vo, HttpSession session) throws Exception {
 		vo.setId(session.getAttribute("id").toString());
+		System.out.println("컨트롤러"+vo.getCom_code());
 		int result = service.commentInsert(vo);
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("result", result);
@@ -50,7 +51,7 @@ public class CommentController {
 	
 	@RequestMapping(value = "/commentModify", method = RequestMethod.POST)
 	public @ResponseBody Object commentModify(Model model, CommentVO vo) throws Exception {
-		int result = service.commentUpdate(vo.getCom_no(), vo.getCom_cont());
+		int result = service.commentUpdate(vo.getCom_no(), vo.getCom_cont(),vo.getCom_code());
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("result", result);
 		return paramMap;

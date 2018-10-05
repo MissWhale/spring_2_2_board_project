@@ -4,34 +4,23 @@
 <%@ page session="false" %>
 <html>
 	<head>
-		<title>글 읽기</title>
+		<title>코드 공유 게시판 : 작성</title>
 		<link rel="stylesheet" href="/resources/design.css" type="text/css" media="screen" />
 		<link rel="stylesheet" href="/resources/read.css" type="text/css" media="screen" />
-		<link rel="stylesheet" href="/resources/prism.css" type="text/css" media="screen" />
-		<!-- <script src="/resources/highlight.pack.js"></script> -->
-		<!-- <link rel="stylesheet" href="/resources/rainbow.css" type="text/css"> -->
-		<!-- <link rel="stylesheet" href="/resources/codemirror/codemirror/lib/neo.css" type="text/css" media="screen" /> - -->
-		<!-- <script>hljs.configure({useBR: true});hljs.initHighlightingOnLoad();</script> -->
-		<!-- <link rel="stylesheet" href="/resources/codemirror.css">
-		<script src="/resources/codemirror/codemirror/mode/clike/clike.js" type="text/javascript"></script>
-		<script src="http://codemirror.net/lib/codemirror.js"></script>
-		<script src="http://codemirror.net/addon/edit/matchbrackets.js"></script>
-		<script src="https://codemirror.net/mode/css/css.js"></script>
-		<!-- <script src="http://codemirror.net/addon/edit/continuecomment.js"></script> -->
-		<!-- <script src="http://codemirror.net/mode/javascript/javascript.js"></script> -->
+		<!-- <link rel="stylesheet" href="/resources/prism.css" type="text/css" media="screen" /> -->
+		<script src="/resources/autosize.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.9/ace.js"></script>
-		<script src="ace/ext-language_tools.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.1/ext-language_tools.js"></script>
 		<style>
 			form > .in_block {text-align:left;}
-			/* span {position:relative;top:-270px;} */
 			input[type="button"] {width:70px;height:35px;}
 			input[type="submit"] {width:70px;height:35px;}
 		</style>
 	</head>
-	<body>
+	<body onload="init();">
 		<div>
 			<div id="top">
-				<a href="/" id="logo">웹 코드 에디터</a>
+				<a href="/" id="logo"><img src="/resources/logo.png" ></a>
 				<div id="btn">
 					<c:choose>
 						<c:when test='${session == "yes"}'>
@@ -46,11 +35,10 @@
 				</div>
 			</div>
 		</div>
-		<div id='cssmenu' style="height: 40px;position: relative;top: 60px;"></div>
+		<div id='cssmenu' style="height: 40px;position: relative;top: 30px;"></div>
 		<form method="post" id="write">
-			<!-- <input type="checkbox" name="chk_info" style="width: auto;margin-left: 150px;margin-top: 60px;" onclick="check(this)">자동인식 -->
 			<div id="select_box" class="selbox">
-				<label for="color" style="top:6px">C</label>
+				<label for="color" style="top:10px">C</label>
 					<select name="language" id="color" style="min-height: 30px;height:30px">
 						<option value="1">C</option>
 						<option value="2">C++</option>
@@ -63,20 +51,17 @@
 						<option value="9">JavaScript</option>
 						<option value="10">PHP</option>
 						<option value="11">SQL</option>
+						<option value="12">AutoHotkey</option>
 					</select> 
 			</div>
 			<div style="margin-left:8%; width:90%;">
 				<div class="in_block">
 					<input type="text" name="title" style="height: 30px;">
 				</div>		
-				<!-- <div class="in_block">
-					<label>${post.title}</label>
-				</div> -->
 				<div style="margin-top: 20px;" >
-					<textarea name="body" data-editor="sql"  id="writetext" data-gutter="1" rows="15" ></textarea>
-					<!-- <textarea rows="20" class="codemirror" name="body" style="margin-top: 20px;"></textarea> -->
+					<textarea name="body" id="writebody" style="height:200px;" ></textarea>
+					<textarea name="code" data-editor="sql"  id="writecode" data-gutter="1" rows="15" ></textarea>
 				</div>
-				<!-- javascript css csharp java python json c_cpp sql-->
 				<div id="wrbtn">		
 					<button type="button" onclick='checking_form()'>완료</button>
 					<button type="button" onclick='back()'>취소</button>
@@ -86,6 +71,12 @@
 		</form>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script>
+			function init(){
+				if("${session}"!='yes'){
+					alert("비정상적 접근입니다");
+					location.href="/";
+				}
+			};
 			var select = $("select#color");
 			var textarea = $('textarea[data-editor]');
 			var mode = textarea.data('editor');
@@ -96,15 +87,7 @@
 			'class': textarea.attr('class')
 			}).insertBefore(textarea);
 			var editor = ace.edit(editDiv[0]);
-			// function check(box){
-			// 	if(box.checked == true){
-			// 		// console.log("체크");
-			// 		$('#color').attr('disabled', true);
-			// 	}else{
-			// 		// console.log("해제");
-			// 		$('#color').attr('disabled', false);
-			// 	}
-			// }
+			autosize(document.querySelectorAll('#writebody'));
 			function back() {
 				href = "/?currentPageNo=" + ${cri.currentPageNo} + "&maxPost=" + ${cri.maxPost};
 				href += "&search=" + "${search.search}" + "&searchType=" + "${search.searchType}";
@@ -113,7 +96,8 @@
 			function checking_form() {
 				var form = document.forms[0];
 				var title=form.title.value;
-				var body=form.body.value;
+				form.code.value=editor.getValue();
+				var code=form.code.value;
 				if(title == ""){
 					alert('제목을 적어주세요');
 					return false;
@@ -121,12 +105,10 @@
 					alert("제목은 최대 50글자까지 가능합니다")
 					return false;
 				}
-				if(body == ""){
+				if(code == ""){
 					alert('내용을 채워주세요');
 					return false;
 				}
-				form.body.value=editor.getValue();
-				console.log(form.body.value);
 				write.submit();
 			}
 		    	select.change(function(){
@@ -141,7 +123,7 @@
 				else if(select_name=="JavaScript") editor.getSession().setMode("ace/mode/javascript");
 				else if(select_name=="PHP") editor.getSession().setMode("ace/mode/php");
 				else if(select_name=="SQL") editor.getSession().setMode("ace/mode/sql");
-				//  javascript css  java json  sql
+				else if(select_name=="AutoHotkey") editor.getSession().setMode("ace/mode/autohotkey");
 		        	$(this).siblings("label").text(select_name);
 			});
 			$(function() {
@@ -150,19 +132,13 @@
 					editor.renderer.setShowGutter(textarea.data('gutter'));
 					editor.getSession().setValue(textarea.val());
 					editor.getSession().setMode("ace/mode/c_cpp");
-					// editor.setTheme("ace/theme/idle_fingers");
 					editor.setOptions({
 						fontSize: "16pt",
-						// theme:"ace/theme/iPlastic"
-						// height:"500px",
-						// width:"1617.63px"
+						enableBasicAutocompletion: true,
+						enableSnippets: true,
+						enableLiveAutocompletion: true
 					});
 					editor.setTheme("ace/theme/idle_fingers");
-					console.log(textarea.prev());
-					// textarea.prev().css("width","1617.63px");
-					// textarea.prev().css("min-height","600px");
-					// textarea.prev().css("max-height","1000px");
-					// copy back to textarea on form submit...
 					textarea.closest('form').submit(function() {
 					textarea.val(editor.getSession().getValue());
 					})

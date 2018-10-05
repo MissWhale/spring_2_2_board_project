@@ -3,6 +3,6 @@
     "powermode.enabled": true,
     "powermode.presets": "simple-rift",
     "powermode.explosionDuration": 2000,
-    "editor.fontSize": 16,
+    "editor.fontSize": 18,
     "editor.fontFamily": "메이플스토리 OTF",
 }

@@ -4,7 +4,6 @@ import java.util.HashMap;
 
 import javax.inject.Inject;
 
-import com.mysql.cj.Session;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;

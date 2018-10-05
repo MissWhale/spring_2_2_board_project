@@ -78,7 +78,6 @@ public class BoardController {
 	@RequestMapping(value = "/board/modify", method = RequestMethod.POST)
 	public String modify_post(Model model, BoardVO vo, HttpSession session) throws Exception {
 		logger.info("수정완료");
-		System.out.println(vo.getTitle());
 		vo.setId(session.getAttribute("id").toString());
 		service.update_post(vo);
 		if(session.getAttribute("id") != null){

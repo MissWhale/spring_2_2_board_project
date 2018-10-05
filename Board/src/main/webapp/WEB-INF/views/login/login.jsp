@@ -3,12 +3,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
+<head>
+	<title>코드 공유 게시판 : 로그인</title>
+</head>
 <link rel="stylesheet" href="/resources/login.css" type="text/css"media="screen" />
 <link rel="stylesheet" href="/resources/design.css" type="text/css"media="screen" />
 <body onload="init();">
 	<div>
 		<div id="top">
-			<a href="/" id="logo">웹 코드 에디터</a>
+			<a href="/" id="logo"><img src="/resources/logo.png" ></a>
 			<div id="btn">
 				<c:choose>
 					<c:when test='${session == "yes"}'>
@@ -23,13 +26,9 @@
 			</div>
 		</div>
 	</div>
-	<img src="/resources/main.jpg" style="height: 400px; width: 85%; margin-left: 8%; margin-right: 8%;">
+	<img id="main" src="/resources/main.jpg">
 	<div>
 		<div id='cssmenu' style="height: 40px;">
-			<!-- <ul> -->
-			   <!-- <li class='active'><a href='/'><span>공지사항</span></a></li> -->
-			   <!-- <li><a href='#'><span>코드게시판</span></a></li> -->
-			<!-- </ul> -->
 		</div>
 		<div class="form">
 			<ul class="tab-group">
@@ -67,7 +66,7 @@
 					<form action="/login/register" method="post" id="regifrm">
 						<div class="top-row">
 							<div class="field-wrap">
-								<label>아이디
+								<label id="idlbl">아이디
 									<span class="req">*</span>
 								</label>
 								<input type="text" id="idcheck" name="id" autocomplete="off" style="width:440px;ime-mode:disabled" onkeyup="trim(this);">
@@ -76,7 +75,7 @@
 							<div class="field-wrap"></div>
 						</div>
 						<div class="field-wrap">
-							<label>이메일
+							<label id="emaillbl">이메일
 								<span class="req">*</span>
 							</label>
 							<input type="text" id="emailcheck" name="email" autocomplete="off" style="width:440px;ime-mode:disabled" onkeyup="trim(this);">
@@ -107,7 +106,7 @@
 					<h1>ID찾기</h1>
 					<form action="/login/login" method="post" id="idfrm">
 						<div class="field-wrap">
-							<label>이름
+							<label >이름
 									<span class="req">*</span>
 							</label>
 							<input type="text" id="findname" name="id" autocomplete="off" onkeyup="trim(this);"/>
@@ -148,8 +147,10 @@
 	</div>
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script>
-		var idsave='';
-		var emailsave='';
+		var idsave=null;
+		var emailsave=null;
+		var ic="false";
+		var ec="false";
 		function success() {
 			var result = '<c:out value="${success}"></c:out>';
 			if(result == 'success')
@@ -168,7 +169,7 @@
 		function trim(obj){ //공백제거
 			var a = $(obj).val().replace(/ /gi, '');
 			$(obj).val(a);
-    	}
+    		}
 		$("#loginbtn").click(function(){ //로그인
 			if($('#loginid').val()==''){
 				alert("아이디를 입력하세요.");
@@ -179,15 +180,7 @@
 			}
 		});
 		$("#registerbtn").click(function(){ //회원가입
-			if(idsave!=$('#idcheck').val()){
-				alert("아이디중복을 다시 확인 해주세요.");
-				$('#idck').attr('disabled', false);
-				$('#idck').css("background-color","#3f8be9");
-			}else if(emailsave!=$('#emailcheck').val()){
-				alert("이메일중복을 다시 확인 해주세요.");
-				$('#emailck').attr('disabled', false);
-				$('#emailck').css("background-color","#3f8be9");
-			}else if($('#idcheck').val()==''){
+			if($('#idcheck').val()==''){
 				alert("아이디를 입력하세요.");
 			}else if($('#emailcheck').val()==''){
 				alert("이메일을 입력하세요.");
@@ -201,6 +194,20 @@
 				alert("비밀번호는 최소4자 최대20자까지 가능합니다.");
 			}else if($('#regipw').val()!=$('#regipwok').val()){
 				alert("비밀번호가 일치하지 않습니다.");
+			}else if(idsave!=$('#idcheck').val()){
+				alert("아이디중복을 다시 확인 해주세요.");
+				$('#idck').attr('disabled', false);
+				$('#idck').css("background-color","#3f8be9");
+				$('#idcheck').css("border-color","red");
+				$("#idlbl")[0].innerText="아이디중복을 다시 확인 해주세요.";
+				ic="true";
+			}else if(emailsave!=$('#emailcheck').val()){
+				alert("이메일중복을 다시 확인 해주세요.");
+				$('#emailck').attr('disabled', false);
+				$('#emailck').css("background-color","#3f8be9");
+				$('#emailcheck').css("border-color","red");
+				$("#emaillbl")[0].innerText="이메일중복을 다시 확인 해주세요.";
+				ec="true";
 			}else{
 				$('#regifrm').submit();
 				// alert("성공");
@@ -227,7 +234,6 @@
 			    cache : false,
 			    data : "id="+$("#idcheck").val(),
 			    success : function(response){
-					console.log(response.result+"아작스체크");
 			    	if(response.result == 1){
 						alert("중복된 아이디입니다.");
 						$('#idck').css("background-color","#3f8be9");
@@ -236,7 +242,10 @@
 						alert("사용가능한 아이디입니다.");
 						$('#idck').attr('disabled', true);
 						$('#idck').css("background-color","#767f8a");
+						$('#idcheck').css("border-color","#a0b3b0");
+						$("#idlbl")[0].innerText="아이디";
 						idsave=$("#idcheck").val();
+						ic="false";
 					}
 			}});
 		});
@@ -263,7 +272,6 @@
 			    cache : false,
 			    data : "email="+$("#emailcheck").val(),
 			    success : function(response){
-					console.log(response.result+"아작스체크");
 			    	if(response.result == 1){
 						alert("중복된 이메일입니다.");
 						$('#emailck').css("background-color","#3f8be9");
@@ -272,7 +280,10 @@
 						alert("사용가능한 이메일입니다.");
 						$('#emailck').attr('disabled', true);
 						$('#emailck').css("background-color","#767f8a");
+						$('#emailcheck').css("border-color","#a0b3b0");
+						$("#emaillbl")[0].innerText="이메일";
 						emailsave=$("#emailcheck").val();
+						ec="false";
 					}
 			}});
 		});
@@ -294,7 +305,6 @@
 			    cache : false,
 			    data : "name="+$("#findname").val()+"&email="+$("#findemail").val(),
 			    success : function(response){
-					console.log(response.result+"아작스체크");
 			    	if(!response.result){
 						alert("일치하는 계정정보가 없습니다");
 						$('#idfind').css("background-color","#3f8be9");
@@ -330,7 +340,6 @@
 			    cache : false,
 			    data : "name="+$("#pwfindname").val()+"&email="+$("#pwfindemail").val()+"&id="+$("#pwfindid").val(),
 			    success : function(response){
-					console.log(response.result+"아작스체크");
 			    	if(!response.result){
 						alert("일치하는 계정정보가 없습니다");
 						$('#pwfind').css("background-color","#3f8be9");
@@ -349,23 +358,122 @@
 			var $this = $(this),
 				label = $this.prev('label');
 			if (e.type === 'keyup') {
-				if ($this.val() === '') {
-				label.removeClass('active highlight');
+				if($this[0].id=="idcheck"){
+					if($this.val() === ''){
+						$this.css("border-color","#3f8be9");
+						label[0].innerText="아이디";
+						ic="false";
+					}if(idsave==null){
+					}else if(idsave!=$this[0].value){
+						$('#idck').attr('disabled', false);
+						$('#idck').css("background-color","#3f8be9");
+						$this.css("border-color","red");
+						label[0].innerText="아이디중복을 다시 확인 해주세요.";
+						idsave=null;
+						ic="true";
+					}else{
+						$this.css("border-color","#3f8be9");
+						label[0].innerText="아이디";
+						ic="false";
+					}
+				}if($this[0].id=="emailcheck"){
+					if($this.val() === ''){
+						$this.css("border-color","#3f8be9");
+						label[0].innerText="이메일";
+						ec="false";
+					}if(emailsave==null){
+					}else if(emailsave!=$this[0].value){
+						$('#emailck').attr('disabled', false);
+						$('#emailck').css("background-color","#3f8be9");
+						$this.css("border-color","red");
+						label[0].innerText="이메일중복을 다시 확인 해주세요.";
+						emailsave=null;
+						ec="true";
+					}else{
+						$this.css("border-color","#3f8be9");
+						label[0].innerText="이메일";
+						ec="false";
+					}
+				}if($this[0].id=="regipwok"){
+					if($("#regipw").val()!=$("#regipwok").val()){
+						label[0].innerText="비밀번호가 일치하지않습니다";
+						$this.css("border-color","red");
+					}else{
+						label[0].innerText="비밀번호가 일치합니다";
+						$this.css("border-color","#3f8be9");
+					}
+				}if ($this.val() === '') {
+					if($this[0].id=="regipwok"){
+						label[0].innerText="비밀번호 확인 *";
+						$this.css("border-color","#a0b3b0");
+					}
+					label.removeClass('active highlight');
 				} else {
-				label.addClass('active highlight');
+					label.addClass('active highlight');
 				}
 			} else if (e.type === 'blur') {
 				if( $this.val() === '' ) {
 					label.removeClass('active highlight'); 
-					} else {
+					if($this[0].id=="idcheck"){
+						if(ic=="true"){
+							$this.css("border-color","red");
+						}else{
+							$this.css("border-color","#a0b3b0");
+						}
+					}if($this[0].id=="emailcheck"){
+						if(ec=="true"){
+							$this.css("border-color","red");
+						}else{
+							$this.css("border-color","#a0b3b0");
+						}
+					}
+				} else {
 					label.removeClass('highlight');   
-					}   
+					if($this[0].id=="idcheck"){
+						if(ic=="true"){
+							$this.css("border-color","red");
+						}else{
+							$this.css("border-color","#a0b3b0");
+						}
+					}if($this[0].id=="emailcheck"){
+						if(ec=="true"){
+							$this.css("border-color","red");
+						}else{
+							$this.css("border-color","#a0b3b0");
+						}
+					}
+				}   
 			} else if (e.type === 'focus') {
 				if( $this.val() === '' ) {
 					label.removeClass('highlight'); 
-					} 
-				else if( $this.val() !== '' ) {
+					if($this[0].id=="idcheck"){
+						if(ic=="true"){
+							$this.css("border-color","red");
+						}else{
+							$this.css("border-color","#3f8be9");
+						}
+					}else if($this[0].id=="emailcheck"){
+						if(ec=="true"){
+							$this.css("border-color","red");
+						}else{
+							$this.css("border-color","#3f8be9");
+						}
+					}
+				} else if( $this.val() !== '' ) {
 					label.addClass('highlight');
+					if($this[0].id=="idcheck"){
+						if(ic=="true"){
+							$this.css("border-color","red");
+						}else{
+							$this.css("border-color","#3f8be9");
+						}
+					}else if($this[0].id=="emailcheck"){
+						if(ec=="true"){
+							$this.css("border-color","red");
+						}else{
+							$this.css("border-color","#3f8be9");
+						}
+					}
 				}
 		}});
 		$('.tab a').on('click', function (e) {

@@ -10,6 +10,7 @@ public class BoardVO {
 	private int hits;
 	private String body;
 	private int language;
+	private String code;
 	public int getBno() {
 		return bno;
 	}
@@ -51,5 +52,11 @@ public class BoardVO {
 	}
 	public void setLanguage(int language){
 		this.language=language;
+	}
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
 	}
 }

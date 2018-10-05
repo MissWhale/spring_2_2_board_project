@@ -32,16 +32,7 @@ public class LoginController {
 	
 	@RequestMapping(value = "/login/login", method = RequestMethod.POST)
 	public String login_check(Model model, LoginVO vo, HttpSession session) {
-		// System.out.println("id"+vo.getId().isEmpty());
-		// if(vo.getId().isEmpty()){
-		// 	model.addAttribute("check", "noid");
-		// 	return "/login/login";	
-		// }else if(vo.getPw().isEmpty()){
-		// 	model.addAttribute("check", "nopw");
-		// 	return "/login/login";
-		// }
 		boolean result = service.login_check(vo.getId(), vo.getPw());
-		System.out.println("°á°ú"+result);
 		if(result)
 		{
 			session.setAttribute("id", vo.getId());

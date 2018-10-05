@@ -11,13 +11,14 @@
 		]]>
 	</select>
 	<insert id="commentInsert">
-		insert into tbl_comment(com_cont, bno,id)
-		values(#{com_cont}, #{bno},#{id})
+		insert into tbl_comment(com_cont, bno,id,com_code)
+		values(#{com_cont}, #{bno},#{id},#{com_code})
 	</insert>
 	<update id="commentUpdate">
 		update tbl_comment
 		set
-		com_cont = #{com_cont}
+		com_cont = #{com_cont},
+		com_code=#{com_code}
 		where
 		com_no = #{com_no}
 	</update>

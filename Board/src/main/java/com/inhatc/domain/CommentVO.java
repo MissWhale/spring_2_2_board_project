@@ -5,6 +5,7 @@ public class CommentVO {
 	private String com_cont;
 	private int bno;
 	private String id;
+	private String com_code;
 	public int getCom_no() {
 		return com_no;
 	}
@@ -28,5 +29,11 @@ public class CommentVO {
 	}
 	public void setId(String id) {
 		this.id = id;
+	}
+	public String getCom_code() {
+		return com_code;
+	}
+	public void setCom_code(String com_code) {
+		this.com_code = com_code;
 	}
 }

@@ -4,7 +4,7 @@
 <%@ page session="false" %>
 <html>
 	<head>
-		<title>글 읽기</title>
+		<title>코드 공유 게시판 : 수정</title>
 		<link rel="stylesheet" href="/resources/design.css" type="text/css" media="screen" />
 		<link rel="stylesheet" href="/resources/read.css" type="text/css" media="screen" />
 		<style>
@@ -12,13 +12,14 @@
 			input[type="button"] {width:70px;height:35px;}
 			input[type="submit"] {width:70px;height:35px;}
 		</style>
+		<script src="/resources/autosize.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.9/ace.js"></script>
-		<!-- <script src="ace/ext-language_tools.js"></script> -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.1/ext-language_tools.js"></script>
 	</head>
-	<body>
+	<body onload="init();">
 		<div>
 			<div id="top">
-				<a href="/" id="logo">웹 코드 에디터</a>
+				<a href="/" id="logo"><img src="/resources/logo.png" ></a>
 				<div id="btn">
 					<c:choose>
 						<c:when test='${session == "yes"}'>
@@ -33,42 +34,45 @@
 				</div>
 			</div>
 		</div>
-		<div id='cssmenu' style="height: 40px;position: relative;top: 60px;"></div>
+		<div id='cssmenu' style="height: 40px;position: relative;top: 30px;"></div>
 		<form method="post" onsubmit="return checking_form()" id="write">
 			<div id="select_box" class="selbox">
 				<c:choose>
 					<c:when test="${post.language == '1'}">
-						<label for="color" style="top:6px">C</label>
+						<label for="color" style="top:10px">C</label>
 					</c:when>
 					<c:when test="${post.language == '2'}">
-						<label for="color" style="top:6px">C++</label>
+						<label for="color" style="top:10px">C++</label>
 					</c:when>
 					<c:when test="${post.language == '3'}">
-						<label for="color" style="top:6px">C#</label>
+						<label for="color" style="top:10px">C#</label>
 					</c:when>
 					<c:when test="${post.language == '4'}">
-						<label for="color" style="top:6px">Python</label>
+						<label for="color" style="top:10px">Python</label>
 					</c:when>
 					<c:when test="${post.language == '5'}">
-						<label for="color" style="top:6px">JAVA</label>
+						<label for="color" style="top:10px">JAVA</label>
 					</c:when>
 					<c:when test="${post.language == '6'}">
-						<label for="color" style="top:6px">CSS</label>
+						<label for="color" style="top:10px">CSS</label>
 					</c:when>
 					<c:when test="${post.language == '7'}">
-						<label for="color" style="top:6px">HTML</label>
+						<label for="color" style="top:10px">HTML</label>
 					</c:when>
 					<c:when test="${post.language == '8'}">
-						<label for="color" style="top:6px">JSON</label>
+						<label for="color" style="top:10px">JSON</label>
 					</c:when>
 					<c:when test="${post.language == '9'}">
-						<label for="color" style="top:6px">JavaScript</label>
+						<label for="color" style="top:10px">JavaScript</label>
 					</c:when>
 					<c:when test="${post.language == '10'}">
-						<label for="color" style="top:6px">PHP</label>
+						<label for="color" style="top:10px">PHP</label>
 					</c:when>
 					<c:when test="${post.language == '11'}">
-						<label for="color" style="top:6px">SQL</label>
+						<label for="color" style="top:10px">SQL</label>
+					</c:when>
+					<c:when test="${post.language == '12'}">
+						<label for="color" style="top:10px">AutoHotkey</label>
 					</c:when>
 				</c:choose>
 					<select name="language" id="color" style="min-height: 30px;height:30px">
@@ -89,26 +93,25 @@
 				<input type="hidden" value="${post.bno}" name="bno">
 				<div class="in_block">
 					<input type="text" name="title" style="height: 30px;" value="<c:out value="${post.title}"></c:out>" name="title">
-					<!-- <input type="text" style="width:90%;" value="<c:out value="${post.title}"></c:out>" name="title"> -->
 				</div>
 				<div style="margin-top: 20px;">
-					<!-- <textarea rows="20" name="body" style="margin-top: 20px;"><c:out value="${post.body}"></c:out></textarea> -->
-					<textarea name="body" data-editor="sql"  id="input" data-gutter="1" rows="15" ><c:out value="${post.body}"></c:out></textarea>
-					<!-- <textarea rows="20" style="width:90%;" name="body"><c:out value="${post.body}"></c:out></textarea> -->
+					<textarea name="body" id="writebody1" style="height:200px;"><c:out value="${post.body}"></c:out></textarea>
+					<textarea name="code" data-editor="sql"  id="input" data-gutter="1" rows="15" ><c:out value="${post.code}"></c:out></textarea>
 				</div>
 				<div id="wrbtn">		
 					<button type="button" onclick="checking_form()">완료</button>
 					<button type="button" onclick='back()'>취소</button>
 				</div>
-				<!-- <div style="float:right; position:relative; left:-6%;">		
-					<input type="submit" value="완료">
-					&nbsp;&nbsp;&nbsp;			
-					<input type="button" value="취소" onclick='back()'>
-				</div> -->
 			</div>
 		</form>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script>
+			function init(){
+				if("${session}"!='yes'){
+					alert("비정상적 접근입니다");
+					location.href="/";
+				}
+			};
 			var select = $("select#color");
 			var textarea = $('textarea[data-editor]');
 			var mode = textarea.data('editor');
@@ -119,7 +122,7 @@
 			'class': textarea.attr('class')
 			}).insertBefore(textarea);
 			var editor = ace.edit(editDiv[0]);
-
+			autosize(document.querySelectorAll('#writebody'));
 			select.change(function(){
 				var select_name = $(this).children("option:selected").text();
 				if(select_name=="C" || select_name=="C++" ) editor.getSession().setMode("ace/mode/c_cpp");
@@ -132,6 +135,7 @@
 				else if(select_name=="JavaScript") editor.getSession().setMode("ace/mode/javascript");
 				else if(select_name=="PHP") editor.getSession().setMode("ace/mode/php");
 				else if(select_name=="SQL") editor.getSession().setMode("ace/mode/sql");
+				else if(select_name=="AutoHotkey") editor.getSession().setMode("ace/mode/autohotkey");
 				$(this).siblings("label").text(select_name);
 			});
 			$(function() {
@@ -150,44 +154,41 @@
 					else if(${post.language}=="9") editor.getSession().setMode("ace/mode/javascript");
 					else if(${post.language}=="10") editor.getSession().setMode("ace/mode/php");
 					else if(${post.language}=="11") editor.getSession().setMode("ace/mode/sql");
+					else if(${post.language}=="12") editor.getSession().setMode("ace/mode/autohotkey");
 					editor.setTheme("ace/theme/idle_fingers");
 					editor.setOptions({
 						fontSize: "16pt",
+						enableBasicAutocompletion: true,
+						enableSnippets: true,
+						enableLiveAutocompletion: true
 					});
 					editor.setTheme("ace/theme/idle_fingers");
-					console.log(textarea.prev());
-					// textarea.prev().css("width","1603.63px");
-					// textarea.prev().css("min-height","600px");
-					// textarea.prev().css("max-height","1000px");
-					// copy back to textarea on form submit...
 					textarea.closest('form').submit(function() {
 					textarea.val(editor.getSession().getValue());
 					})
 				});
 			});
 			function back() {
-				href = "/?currentPageNo=" + ${cri.currentPageNo} + "&maxPost=" + ${cri.maxPost};
-				href += "&search=" + "${search.search}" + "&searchType=" + "${search.searchType}";
+				href = "/board/read?bno=" + ${post.bno};
 				location.href = href;
 			}
 			function checking_form() {
 				var form = document.forms[0];
 				var title=form.title.value;
-				var body=form.body.value;
+				form.code.value=editor.getValue();
+				var code=form.code.value;
 				if(title == ""){
-					alert('제목을 적어주세요');
+					alert("제목을 적어주세요");
 					return false;
 				}else if(title.length >50){
 					alert("제목은 최대 50글자까지 가능합니다")
 					return false;
-				}
-				if(body == ""){
+				}else if(code == ""){
 					alert('내용을 채워주세요');
 					return false;
 				}
-				form.body.value=editor.getValue();
 				form.submit();
-			}			
+			}	
 		</script>
 	</body>
 </html>

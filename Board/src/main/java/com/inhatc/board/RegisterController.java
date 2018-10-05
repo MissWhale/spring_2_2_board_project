@@ -38,38 +38,30 @@ public class RegisterController {
 	public String register(RegisterVO vo, Model model, RedirectAttributes rttr) throws Exception {
 		int result=service.register(vo);
 		if(result==1){
-			System.out.println("회원가입성공");
 			rttr.addFlashAttribute("success","success");
 			 return "redirect:/login/login";
 		}else{
-			System.out.println("회원가입실패");
 			model.addAttribute("success","fail");
 			return "/login/register";	
 		}
 	}	
 	@RequestMapping(value = "/idcheck", method = RequestMethod.POST)
 	public @ResponseBody Object idcheck(Model model, RegisterVO vo) throws Exception {
-		System.out.println("컨트롤러"+vo.getId());
 		int result = service.getid(vo);
-		System.out.println("컨트롤러"+result);
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("result", result);
 		return paramMap;
 	}
 	@RequestMapping(value = "/emailcheck", method = RequestMethod.POST)
 	public @ResponseBody Object emailcheck(Model model, RegisterVO vo) throws Exception {
-		System.out.println("컨트롤러"+vo.getId());
 		int result = service.getemail(vo);
-		System.out.println("컨트롤러"+result);
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("result", result);
 		return paramMap;
 	}		
 	@RequestMapping(value = "/idfind", method = RequestMethod.POST)
 	public @ResponseBody Object findid(Model model, RegisterVO vo) throws Exception {
-		System.out.println("컨트롤러 name:"+vo.getName()+"이메일:"+vo.getEmail());
 		RegisterVO id = service.findid(vo);
-		System.out.println("돌려주기"+id);
 		if(id==null){
 			return null;
 		}

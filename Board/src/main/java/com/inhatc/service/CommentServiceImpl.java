@@ -21,8 +21,8 @@ public class CommentServiceImpl implements CommentService {
 	}
 
 	@Override
-	public int commentUpdate(int com_no, String com_cont) {
-		return dao.commentUpdate(com_no, com_cont);
+	public int commentUpdate(int com_no, String com_cont,String com_code) {
+		return dao.commentUpdate(com_no, com_cont,com_code);
 	}
 
 	@Override

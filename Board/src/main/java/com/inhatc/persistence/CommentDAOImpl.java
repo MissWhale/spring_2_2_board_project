@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane.SystemMenuBar;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
@@ -25,10 +26,12 @@ public class CommentDAOImpl implements CommentDAO {
 	}
 
 	@Override
-	public int commentUpdate(int com_no, String com_cont) {
+	public int commentUpdate(int com_no, String com_cont,String com_code) {
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("com_no", com_no);
 		paramMap.put("com_cont", com_cont);
+		paramMap.put("com_code", com_code);
+		System.out.println("다오임플"+com_code);
 		return session.update(namespace+".commentUpdate", paramMap);
 	}
 

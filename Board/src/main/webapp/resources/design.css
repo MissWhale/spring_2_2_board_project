@@ -1,13 +1,21 @@
-
+#top{
+  margin-top: 15px;
+}
 #top #logo{
-  width: 8%; 
+  /* width: 8%; 
   text-align: left; 
   font-size: 20px; 
   margin-left: 8%;
    margin-bottom: 10px; 
    float: left;
    min-width: 150px;
-   text-decoration: none;
+   text-decoration: none; */
+}
+#top img{
+  width:50px;
+  height:50px;
+  margin-left: 8%;
+  margin-top: -10px;
 }
 #top #btn{
   float: right;  
@@ -21,11 +29,12 @@
   margin-right: 88px;
   }
 }
-img{
+#main{
   height: 400px; 
   width: 85%; 
   margin-left: 8%; 
   margin-right: 8%;
+  margin-top: 10px;
 }
 mytable {
     border-collapse: separate;
@@ -225,7 +234,7 @@ button.search:hover {
   #search{
     width: auto;
     margin-left: 70.1%;
-    margin-top: 1%;
+    margin-top: 2%;
   }
 }
 div#select_box {
