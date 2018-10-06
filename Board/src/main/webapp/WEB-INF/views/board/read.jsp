@@ -149,7 +149,6 @@
 									<script>
 									var textcode = $('#${comment.com_no}').hide();
 									var editDiv1 = $('<div>', {
-									// position: 'absolute',
 									width: textcode.width(),
 									height: textcode.height(),
 									'class': textcode.attr('class'),
@@ -161,8 +160,6 @@
 									} else {
 										editDiv1.css("margin-left","32px");
 									}
-									// editDiv1.css("margin-left","20px");
-									// editDiv1.css("margin-bottom","20px");
 									var editor1 = ace.edit(editDiv1[0]);
 									editor1.session.setValue(textcode.val());
 									editor1.setOptions({
@@ -223,13 +220,11 @@
 		<div id="commentin">
 			<c:choose>
 				<c:when test='${session == "yes"}'>
-					<!-- <input type="text" id="new_comment" autocomplete="off"> -->
 					<textarea id="new_comment" autocomplete="off" placeholder="내용"  ></textarea>
 					<textarea id="new_comcode" autocomplete="off" placeholder="코드" ></textarea>
 					<script>
 						var incode = $('#new_comcode').hide();
 						var editDiv2 = $('<div>', {
-						// position: 'absolute',
 						width: incode.width(),
 						height: incode.height(),
 						'class': incode.attr('class'),
@@ -263,10 +258,6 @@
 			<button type="button" onclick='back()'>목록</button>
 		</div>
 		<script>
-			// $("div[class='comme ace_editor ace-tm']").css("margin-bottom","20px");
-			// if(${session}){
-			// 	$("div[class='comme ace_editor ace-tm']").css("margin-bottom","20px");
-			// }
 			var select = $("select#color");
 			var textarea = $('#input');
 			var mode = textarea.data('editor');
@@ -396,14 +387,9 @@
 				$(this).next().hide();
 				$(this).html("수정완료");
 				$(this).css("width","100px");
-				// $(this).prev().prev().prev().prev()[0].env.editor.setReadOnly(false);
-				// console.log($(this).prev().prev().prev().prev()[0]);
 				var cok=$(this).prev().prev().prev().prev()[0];
 				if(cok==null){
 					var editDiv3 = $('<textarea>', {
-					// position: 'absolute',
-					// width: "798px",
-					height: "42px",
 					'class': 'comme',
 					'id':$(this).val()
 					}).insertAfter($(this).prev().prev());
@@ -432,9 +418,7 @@
 					$(this).prev().prev().prev().prev().css("border", "1px solid black").attr("readonly",false);
 					if(check == false)
 					{
-						// editor3.getSession().getValue();
 						$(this).bind('click', function(){
-							// console.log($(this).prev().prev().prev().prev());
 							var no = $(this).val();
 							var post = encodeURIComponent($(this).prev().prev().prev().prev().val());
 							var cod=encodeURIComponent(editor3.getSession().getValue());

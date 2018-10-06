@@ -22,8 +22,6 @@ public class LoginDAOImpl implements LoginDAO {
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("id", id);
 		paramMap.put("pw", pw);
-		System.out.println("id : "+paramMap.get("id"));
-		System.out.println("pw : "+paramMap.get("pw"));
 		int result = session.selectOne(namespace+".login_check",paramMap);
 		
 		if(result == 1)

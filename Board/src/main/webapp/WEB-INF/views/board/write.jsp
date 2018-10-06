@@ -7,7 +7,6 @@
 		<title>코드 공유 게시판 : 작성</title>
 		<link rel="stylesheet" href="/resources/design.css" type="text/css" media="screen" />
 		<link rel="stylesheet" href="/resources/read.css" type="text/css" media="screen" />
-		<!-- <link rel="stylesheet" href="/resources/prism.css" type="text/css" media="screen" /> -->
 		<script src="/resources/autosize.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.9/ace.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.1/ext-language_tools.js"></script>

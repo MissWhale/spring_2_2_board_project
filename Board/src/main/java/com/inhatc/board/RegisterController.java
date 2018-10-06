@@ -4,20 +4,12 @@ import java.util.HashMap;
 
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import javax.servlet.http.HttpSession;
-import org.springframework.web.servlet.ModelAndView;
 import com.inhatc.domain.RegisterVO;
 import com.inhatc.service.RegisterService;
 
@@ -67,20 +59,16 @@ public class RegisterController {
 		}
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("result", id.getId());
-		System.out.println("돌려주기"+id.getId());
 		return paramMap;
 	}
 	@RequestMapping(value = "/pwfind", method = RequestMethod.POST)
 	public @ResponseBody Object findpw(Model model, RegisterVO vo) throws Exception {
-		System.out.println("컨트롤러 name:"+vo.getName()+" 이메일:"+vo.getEmail()+" 아이디:"+vo.getId());
 		RegisterVO pw = service.findpw(vo);
-		System.out.println("돌려주기"+pw);
 		if(pw==null){
 			return null;
 		}
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("result", pw.getPw());
-		System.out.println("돌려주기"+pw.getId());
 		return paramMap;
 	}
 }

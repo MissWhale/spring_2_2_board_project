@@ -2,7 +2,6 @@ package com.inhatc.board;
 
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -38,7 +37,6 @@ public class BoardController {
 		cri.setSizeOfPage(10);
 		cri.setNumberOfRecords(service.searchBoardCount(sch));
 		cri.makePaging();
-		System.out.println(session.getAttribute("id"));
 		if(session.getAttribute("id") != null){
 			model.addAttribute("session", "yes");
 			model.addAttribute("id", session.getAttribute("id"));
@@ -103,7 +101,6 @@ public class BoardController {
 		logger.info("글쓰기 페이지");
 		model.addAttribute("cri", cri);
 		model.addAttribute("search", sch);
-		System.out.println("세션"+session.getAttribute("id"));
 		if(session.getAttribute("id") != null){
 			model.addAttribute("session", "yes");
 			model.addAttribute("id", session.getAttribute("id"));
@@ -114,8 +111,6 @@ public class BoardController {
 	public String write_post(Model model,BoardVO vo, HttpSession session) throws Exception {
 		logger.info("쓰기완료");
 		vo.setId(session.getAttribute("id").toString());
-		// System.out.println("아이디"+vo.getId());
-		System.out.println("언어"+vo.getLanguage());
 		service.write_post(vo);
 		if(session.getAttribute("id") != null){
 			model.addAttribute("session", "yes");

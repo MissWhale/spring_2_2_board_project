@@ -45,7 +45,6 @@
 	<div>
 		<div id="top">
 			<a href="/" id="logo"><img src="/resources/logo.png" ></a>
-			<!-- <img src="/resources/logo.png" > -->
 			<div id="btn">
 				<c:choose>
 					<c:when test='${session == "yes"}'>
