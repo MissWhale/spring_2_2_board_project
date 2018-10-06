@@ -177,6 +177,20 @@ hr{
     display: inline-block;
     margin-top: -45px;
 }
+#comment #lbl{
+    margin-left:1398px;
+    margin-right: 10px;
+    display: inline-block;
+    margin-top: -45px;
+}
+@media (max-width:1280px){
+    #comment #lbl{
+        margin-left:837px;
+        margin-right: 10px;
+        display: inline-block;
+        margin-top: -45px;
+    }
+}
 #comment button{
     transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
     padding: 7px 15px;
@@ -199,6 +213,7 @@ hr{
     margin: 0 auto;
     margin-left: 150px;
     background: #dbdfe4;
+    margin-top: -15px;
 }
 @media (max-width:1280px){
     #commentin{
@@ -206,6 +221,7 @@ hr{
         margin: 0 auto;
         margin-left: 100px;
         background: #dbdfe4;
+        margin-top: -15px;
     }
 }
 #commentin input{
@@ -236,9 +252,9 @@ hr{
     }
 }
 #commentin button{
+    margin-left: 1400px;
     transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
     padding: 7px 15px;
-    margin: 20px auto;
     border-radius: 4px;
     border:0px;
     width: 60px;
@@ -249,6 +265,23 @@ hr{
     width: 112px;
     margin-top: -75px;
     display: inline-block;
+}
+@media (max-width:1280px){
+    #commentin button{
+        margin-left: 837px;
+        transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+        padding: 7px 15px;
+        border-radius: 4px;
+        border:0px;
+        width: 60px;
+        height: 42px;
+        color: rgba(30, 22, 54, 0.6);
+        box-shadow: rgba(30, 22, 54, 0.4) 0 0px 0px 2px inset;
+        background:white;
+        width: 112px;
+        margin-top: -75px;
+        display: inline-block;
+    }
 }
 #commentin button:hover {
     color: rgba(255, 255, 255, 0.85);
@@ -304,4 +337,80 @@ hr{
         position:relative; 
         margin-right: 64px;
     }
+}
+
+div#sel_box {
+    position: absolute;
+        top: 194px;
+        left: 1550px;
+    width: 210px;
+    height: 25px;
+    background: url(select_arrow.png) 190px center no-repeat;
+    border: 1px solid #E9DDDD;
+}
+@media (max-width:1280px){
+    div#sel_box{
+        position: absolute;
+        top: 194px;
+        left: 960px;
+        width: 210px;
+        height: 25px;
+        background: url(select_arrow.png) 190px center no-repeat;
+        border: 1px solid #E9DDDD;
+    }
+}
+div#sel_box label {
+	  width:200px;
+    position: absolute;
+    font-size: 14px;
+    color: #a97228;
+    top: 4.3px;
+    left: 12px;
+    letter-spacing: 1px;
+}
+div#sel_box select#color {
+    width: 100%;
+    height: 40px;
+    height:26px;
+    padding: 0 10px;
+    opacity: 0;
+    filter: alpha(opacity=0); /* IE 8 */
+}
+
+div#selwrite_box {
+    position: absolute;
+        top: 180px;
+        left: 1550px;
+    width: 210px;
+    height: 40px;
+    background: url(select_arrow.png) 190px center no-repeat;
+    border: 1px solid #E9DDDD;
+}
+@media (max-width:1280px){
+    div#selwrite_box{
+        position: absolute;
+        top: 150px;
+        left: 955px;
+        width: 210px;
+        height: 40px;
+        background: url(select_arrow.png) 190px center no-repeat;
+        border: 1px solid #E9DDDD;
+    }
+}
+div#selwrite_box label {
+	  width:200px;
+    position: absolute;
+    font-size: 14px;
+    color: #a97228;
+    top: 10px;
+    left: 12px;
+    letter-spacing: 1px;
+}
+div#selwrite_box select#theme {
+    width: 100%;
+    height: 40px;
+    height:40px;
+    padding: 0 10px;
+    opacity: 0;
+    filter: alpha(opacity=0); /* IE 8 */
 }

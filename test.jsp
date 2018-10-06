@@ -1,22 +1,193 @@
-<%-- <%@ page language="java" contentType="text/html;charset=euc-kr" %>
-<%!
-    int a=100; 
-%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+   pageEncoding="UTF-8"%>
+<%@ page session="true"%>
 <html>
 <head>
-        <title>Home</title>
-    </head>
-    <body>
-    <h1>
-        Hello world!  
-    </h1>
+<link rel="stylesheet" href="/resources/style.css" type="text/css"media="screen" />
+<title>ÇÁ·ÎÁ§Æ®</title>
+      <style>
+         .mytable { border-collapse:collapse; }  
+         .mytable th, .mytable td { border:1px solid black; }
+         .clear {clear:both;}
+         td:nth-child(1), td:nth-child(3),td:nth-child(4),td:nth-child(5) {width:10%; }
+         th:nth-child(1), th:nth-child(3),th:nth-child(4),th:nth-child(5) {width:10%; }
+         a {text-decoration:none;}
+         select {width:100px;font-size:16px;}
+         input[type="submit"] {width:90px;}
+         p + div > form > * {display:inline;vertical-align:middle;height:27px;}
+         p + div {margin-top:25px !important;}
+         a:link{color:black; text-decoration: none;}
+         a:visited{color:black; text-decoration:none;}
+      </style>
+</head>
+<body>
+   <div>
+      <div id="logbtn">
+         <c:choose>
+            <c:when test='${session == "yes"}'>
+            <div>
+            <p style="margin-top: 60px;margin-bottom: -69px;margin-left: 79%;">${sessionScope.id}´Ô È¯¿µÇÕ´Ï´Ù!!</p>
+            </div>
+               <button id="logout" style = "float: right; margin-right: 40;">·Î±×¾Æ¿ô</button>
+            </c:when>
+            <c:otherwise>
+               <button type="button" id="login" style="float: right; "> ·Î±×ÀÎ</button>
+            </c:otherwise>
+         </c:choose>
+      </div>
+   </div>
+      <a href="/" class="button" style =" font-size: 40; margin-left: 450">ÆÐ¼Ç Á¤º¸ °øÀ¯ °Ô½ÃÆÇ</a>
+      
+   <div id="topbtn">
+        <hr>
+       <button type="button" id="map">°Ô½ÃÆÇ</button>
+       <hr>
+    </div>
+    
+      <div style="width:90%;margin:0 auto;">
+         <form method="get">
+            <select name="searchType">
+               <option value="null" <c:if test="${search.searchType == 'null'}">selected</c:if> >ºÐ·ù</option>
+               <option value="title" <c:if test="${search.searchType == 'title'}">selected</c:if> >Á¦¸ñ</option>
+               <option value="writer" <c:if test="${search.searchType == 'writer'}">selected</c:if> >ÀÛ¼ºÀÚ</option>
+            </select>
+            <input type="text" name="search" value="${search.search }">
+            <input type="submit" value="°Ë»ö">
+         </form>
+      </div>
 
-    <P> ì‹œê°„${serverTime}. </P>
-    </body>
-</html> --%>
-<%@ page import="MyEcho.Echo" contentType="text/html; charset=euc-kr" %>
-<jsp:useBean id="myEcho" class="MyEcho.Echo" scope="page"/>
-<jsp:setProperty name="myEcho" property="msg"/>
-<%
-    out.print("ë¹ˆì¦ˆë‚´ìš©"+myEcho.getMsg[]+"<BR>");
-%>
+   <br />
+   <div style="width:90%;margin:0 auto;">
+         <table class="mytable" style="width:100%;">
+            <thead>
+               <tr style="height:40px;border-bottom:3px solid black;">
+                  <th>¹øÈ£</th>
+                  <th>Á¦¸ñ</th>
+                  <th>ÀÛ¼ºÀÚ</th>
+                  <th>ÀÛ¼ºÀÏ</th>
+                  <th>Á¶È¸¼ö</th>
+                  <th style="width: 60px;">UP</th>
+                  <th style="width: 60px;">DOWN</th>
+               </tr>
+            </thead>
+            <tbody>
+               <c:choose>
+                  <c:when test="${!empty page}">
+                     <c:forEach items="${page}" var="board">
+                        <tr style="text-align:center;height:35px;">
+                           <td>${board.bno}</td>
+                           <td><a href="javascript:read_page_process(${board.bno})">${board.title}</a></td>
+                           <td>${board.writer}</td>
+                           <td><fmt:formatDate value="${board.reg_date}" pattern="yyyy-MM-dd"/></td>
+                           <td>${board.hits}</td>
+                           <td>${board.up}</td>
+                           <td>${board.down}</td>
+                        </tr>
+                     </c:forEach>
+                  </c:when>
+                  <c:otherwise>
+                     <tr style="text-align:center;height:35px;">
+                        <td colspan="5">°Ô½Ã±ÛÀÌ ¾ø½À´Ï´Ù.</td>
+                     </tr>
+                  </c:otherwise>
+               </c:choose>
+            </tbody>
+         </table>
+         <br />
+         <c:if test="${pager.numberOfRecords != 0}">
+            <div style="width:50%;margin:0 auto;text-align:center;">
+               <c:if test="${pager.currentPageNo != 1}">
+                  <a href="javascript:page_locate(${pager.prevPageNo}, ${pager.maxPost})">ÀÌÀü</a>
+               </c:if>&nbsp;
+               <c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}" step="1">
+                  <c:choose>
+                     <c:when test="${i != pager.currentPageNo}">
+                        <a href="javascript:page_locate(${i}, ${pager.maxPost})">
+                           <c:out value="${i}"></c:out>
+                        </a>&nbsp;
+                     </c:when>
+                     <c:otherwise>
+                        <c:out value="${i}"></c:out>
+                        &nbsp;
+                     </c:otherwise>
+                  </c:choose>
+               </c:forEach>
+               <c:if test="${pager.currentPageNo < pager.nextPageNo}">
+                  <a href="javascript:page_locate(${pager.nextPageNo}, ${pager.maxPost})">´ÙÀ½</a>
+               </c:if>
+            </div>
+         </c:if>
+         <br />
+         <div>
+            <button type="button" style="float:right;width:90px;height:30px;" onclick="new_write()">±Û¾²±â</button>
+         </div>
+         <div class="clear"></div>
+      </div>
+   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+   <script>
+      $("#logout").click(function(){
+         location.href = "/logout";
+      })
+   
+      $("#map").click(function(){
+         location.href = "/board/board";
+      })
+      function logname() {
+         href = "/login/login";
+      }
+      
+      function new_write() {
+         href = "/board/write?";
+         href += "&currentPageNo=" + ${pager.currentPageNo}+"&maxPost=" + ${pager.maxPost};
+         href += "&search=" + "${search.search}" + "&searchType="+ "${search.searchType}";
+         location.href = href;
+      }
+      function page_locate(page, perpagenum) {
+         href = "?currentPageNo=" + page + "&maxPost=" + perpagenum;
+         href += "&search=" + "${search.search}" + "&searchType="
+               + "${search.searchType}";
+         location.href = href;
+      }
+      function read_page_process(bno) {
+         href = "/board/read?bno=" + bno;
+         href += "&currentPageNo=" + ${pager.currentPageNo}+"&maxPost=" + ${pager.maxPost};
+         href += "&search=" + "${search.search}" + "&searchType="+ "${search.searchType}";
+         location.href = href;
+      }
+      jQuery(document).ready(function(){
+          
+          var select = $("select#color");
+          
+          select.change(function(){
+              var select_name = $(this).children("option:selected").text();
+              $(this).siblings("label").text(select_name);
+          });
+      });
+      $(document).ready(function() { 
+         var placeholderTarget = $('.textbox input[type="text"]'); 
+         //Æ÷Ä¿½º½Ã
+         placeholderTarget.on('focus', function(){ 
+            $(this).siblings('label').fadeOut('fast'); 
+         }); 
+         //Æ÷Ä¿½º¾Æ¿ô½Ã
+         placeholderTarget.on('focusout', function(){ 
+            if($(this).val() == ''){ 
+               $(this).siblings('label').fadeIn('fast'); 
+               } 
+            }); 
+         });
+      console.log('${pager.currentPageNo}');
+      if($('.textbox input[type="text"]').val()!=''){
+         $('.textbox input[type="text"]').siblings('label').fadeOut('fast'); 
+      };
+      var target="."+${pager.currentPageNo}
+      console.log(target);
+      $(target).css("color","#fff");
+      $(target).css("background","#1278ed");
+      $(target).css("border","#1px solid #4c8500");
+
+   </script>
+</body>
+</html>
