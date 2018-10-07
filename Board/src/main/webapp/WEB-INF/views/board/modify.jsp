@@ -137,7 +137,7 @@
 					<input type="text" name="title" style="height: 30px;" value="<c:out value="${post.title}"></c:out>" name="title">
 				</div>
 				<div style="margin-top: 20px;">
-					<textarea name="body" id="writebody1" style="height:200px;"><c:out value="${post.body}"></c:out></textarea>
+					<textarea name="body" id="writebody" style="height:200px;" placeholder="내용"><c:out value="${post.body}"></c:out></textarea>
 					<textarea name="code" data-editor="sql"  id="input" data-gutter="1" rows="15" ><c:out value="${post.code}"></c:out></textarea>
 				</div>
 				<div id="wrbtn">		

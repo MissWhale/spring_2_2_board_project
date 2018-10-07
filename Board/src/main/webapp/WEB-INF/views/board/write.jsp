@@ -130,6 +130,15 @@
 			}).insertBefore(textarea);
 			var editor = ace.edit(editDiv[0]);
 			autosize(document.querySelectorAll('#writebody'));
+			$( window ).resize(function() {
+				var windowWidth = $( window ).width();
+				console.log(windowWidth);
+				if(windowWidth <1280) {
+					$(editDiv).css( 'width', '1060px' );
+				} else {
+					$(editDiv).css( 'width', '1604px' );
+				}
+			});
 			function back() {
 				href = "/?currentPageNo=" + ${cri.currentPageNo} + "&maxPost=" + ${cri.maxPost};
 				href += "&search=" + "${search.search}" + "&searchType=" + "${search.searchType}";

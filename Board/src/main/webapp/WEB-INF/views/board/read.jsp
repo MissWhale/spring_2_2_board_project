@@ -244,7 +244,7 @@
 							minLines: 3
 						});
 					</script>
-					<button type="button"  id="comment_add" style="margin-left:837px">댓글 달기</button>
+					<button type="button"  id="comment_add">댓글 달기</button>
 				</c:when>
 			</c:choose>
 		</div>
