@@ -206,7 +206,7 @@ div#select_box {
     position: relative;
     width:150px;
     height: 40px;
-    background: url(select_arrow.png) 130px center no-repeat; /* È­»ìÇ¥ ÀÌ¹ÌÁö */
+    background: url(select_arrow.png) 130px center no-repeat; /* È­ï¿½ï¿½Ç¥ ï¿½Ì¹ï¿½ï¿½ï¿½ */
     border: 1px solid #E9DDDD;
     margin-left: -155px;
 }
@@ -228,30 +228,39 @@ div#select_box select#color {
     opacity: 0;
     filter: alpha(opacity=0); /* IE 8 */
 }
+div#select_box select#collang {
+  width: 100%;
+  height: 40px;
+  min-height: 40px;
+  line-height: 40px;
+  padding: 0 10px;
+  opacity: 0;
+  filter: alpha(opacity=0); /* IE 8 */
+}
 .textbox {
 	position: relative;
 	margin-top: -62px;
 	} 
 .textbox label { 
 	position: absolute; 
-	top: 16px; /* input ¿ä¼ÒÀÇ border-top ¼³Á¤°ª ¸¸Å­ */ 
-	left: 1px; /* input ¿ä¼ÒÀÇ border-left ¼³Á¤°ª ¸¸Å­ */ 
-	padding: .8em .5em; /* input ¿ä¼ÒÀÇ padding °ª ¸¸Å­ */ 
+	top: 16px; /* input ï¿½ï¿½ï¿½ï¿½ï¿½ border-top ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å­ */ 
+	left: 1px; /* input ï¿½ï¿½ï¿½ï¿½ï¿½ border-left ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å­ */ 
+	padding: .8em .5em; /* input ï¿½ï¿½ï¿½ï¿½ï¿½ padding ï¿½ï¿½ ï¿½ï¿½Å­ */ 
 	color: #999; 
 	cursor: text; 
 	} 
 .textbox input[type="text"]{ 
   margin-top: 20px;
-	width: 59%; /* ¿øÇÏ´Â ³Êºñ ¼³Á¤ */ 
-	height: auto; /* ³ôÀÌ°ª ÃÊ±âÈ­ */ 
+	width: 59%; /* ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Êºï¿½ ï¿½ï¿½ï¿½ï¿½ */ 
+	height: auto; /* ï¿½ï¿½ï¿½Ì°ï¿½ ï¿½Ê±ï¿½È­ */ 
 	line-height : normal; 
-	/* line-height ÃÊ±âÈ­ */ 
-	padding: .8em .5em; /* ¿øÇÏ´Â ¿©¹é ¼³Á¤, »óÇÏ´Ü ¿©¹éÀ¸·Î ³ôÀÌ¸¦ Á¶Àý */ 
-	font-family: inherit; /* ÆùÆ® »ó¼Ó */ 
+	/* line-height ï¿½Ê±ï¿½È­ */ 
+	padding: .8em .5em; /* ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ */ 
+	font-family: inherit; /* ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ */ 
 	border: 1px solid #999; 
-	border-radius: 0; /* iSO µÕ±Ù¸ð¼­¸® Á¦°Å */ 
-	outline-style: none; /* Æ÷Ä¿½º½Ã ¹ß»ýÇÏ´Â È¿°ú Á¦°Å¸¦ ¿øÇÑ´Ù¸é */ 
-	-webkit-appearance: none; /* ºê¶ó¿ìÀúº° ±âº» ½ºÅ¸ÀÏ¸µ Á¦°Å */ 
+	border-radius: 0; /* iSO ï¿½Õ±Ù¸ð¼­¸ï¿½ ï¿½ï¿½ï¿½ï¿½ */ 
+	outline-style: none; /* ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ï¿½Ï´ï¿½ È¿ï¿½ï¿½ ï¿½ï¿½ï¿½Å¸ï¿½ ï¿½ï¿½ï¿½Ñ´Ù¸ï¿½ */ 
+	-webkit-appearance: none; /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½âº» ï¿½ï¿½Å¸ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ */ 
 	-moz-appearance: none; 
 	appearance: none; 
 	}

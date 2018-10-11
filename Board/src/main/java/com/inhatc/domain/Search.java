@@ -3,7 +3,7 @@ package com.inhatc.domain;
 public class Search {
 	private String searchType;
 	private String search;
-	
+	private String language;
 	public String getSearchType() {
 		return searchType;
 	}
@@ -15,5 +15,11 @@ public class Search {
 	}
 	public void setSearch(String search) {
 		this.search = search;
+	}
+	public String getLanguage() {
+		return language;
+	}
+	public void setLanguage(String language) {
+		this.language = language;
 	}
 }

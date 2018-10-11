@@ -41,15 +41,21 @@ public class BoardController {
 			model.addAttribute("session", "yes");
 			model.addAttribute("id", session.getAttribute("id"));
 		}
+		model.addAttribute("langs",service.getLang());
 		model.addAttribute("page", service.search(sch, cri));
 		model.addAttribute("pager", cri);
 		model.addAttribute("search", sch);
 		return "board/board";
 	}	
-	
+	// @RequestMapping(value = "/", method = RequestMethod.POST)
+	// public void language(String language) throws Exception {
+	// 	System.out.println(language);
+	// 	System.out.println(service.langSearch(language));
+	// 	return;
+	// }	
 	@RequestMapping(value = "/board/read", method = RequestMethod.GET)
 	public void read(Model model, @RequestParam("bno") int bno, Criteria cri, Search sch,HttpSession session) throws Exception {
-		logger.info("ºäÆäÀÌÁö");
+		logger.info("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		service.add_hits(bno);
 		model.addAttribute("post", service.read(bno));
 		model.addAttribute("comment", com_service.commentSearch(bno));
@@ -63,7 +69,7 @@ public class BoardController {
 	
 	@RequestMapping(value = "/board/modify", method = RequestMethod.GET)
 	public void modify(Model model, @RequestParam("bno") int bno, Criteria cri, Search sch, HttpSession session) throws Exception {
-		logger.info("¼öÁ¤ÆäÀÌÁö");
+		logger.info("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		model.addAttribute("post", service.read(bno));
 		model.addAttribute("cri", cri);
 		model.addAttribute("search", sch);
@@ -75,7 +81,7 @@ public class BoardController {
 	
 	@RequestMapping(value = "/board/modify", method = RequestMethod.POST)
 	public String modify_post(Model model, BoardVO vo, HttpSession session) throws Exception {
-		logger.info("¼öÁ¤¿Ï·á");
+		logger.info("ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½");
 		vo.setId(session.getAttribute("id").toString());
 		service.update_post(vo);
 		if(session.getAttribute("id") != null){
@@ -87,7 +93,7 @@ public class BoardController {
 	
 	@RequestMapping(value = "/board/delete", method = RequestMethod.POST)
 	public String delete(Model model, BoardVO vo, HttpSession session) throws Exception {
-		logger.info("»èÁ¦¿Ï·á");
+		logger.info("ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½");
 		service.delete_post(vo.getBno());
 		if(session.getAttribute("id") != null){
 			model.addAttribute("session", "yes");
@@ -98,7 +104,7 @@ public class BoardController {
 	
 	@RequestMapping(value = "/board/write", method = RequestMethod.GET)
 	public void write(Model model, Criteria cri, Search sch, HttpSession session) throws Exception {
-		logger.info("±Û¾²±â ÆäÀÌÁö");
+		logger.info("ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		model.addAttribute("cri", cri);
 		model.addAttribute("search", sch);
 		if(session.getAttribute("id") != null){
@@ -109,7 +115,7 @@ public class BoardController {
 	
 	@RequestMapping(value = "/board/write", method = RequestMethod.POST)
 	public String write_post(Model model,BoardVO vo, HttpSession session) throws Exception {
-		logger.info("¾²±â¿Ï·á");
+		logger.info("ï¿½ï¿½ï¿½ï¿½Ï·ï¿½");
 		vo.setId(session.getAttribute("id").toString());
 		service.write_post(vo);
 		if(session.getAttribute("id") != null){

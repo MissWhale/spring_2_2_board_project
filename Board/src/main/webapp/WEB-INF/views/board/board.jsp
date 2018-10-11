@@ -65,6 +65,14 @@
 	</div>
 	<div id="search">
 		<form method="get">
+			<div id="select_box" style="top: 42px;left: -150px;margin-top: -40px;">
+				<label for="collang">Language</label>
+					<select name="searchType" id="collang">
+						<c:forEach items="${langs}" var="lang">
+							<option value="${lang.language}">${lang.language}</option>
+						</c:forEach>
+					</select> 
+			</div>
 			<div id="select_box">
 				<label for="color">제목</label>
 					<select name="searchType" id="color">
@@ -101,44 +109,7 @@
 							<tr style="text-align: center; height: 35px;">
 								<td>${board.bno}</td>
 								<td style="text-align: left;"><a href="javascript:read_page_process(${board.bno})">${board.title}</a></td>
-								<c:choose>
-										<c:when test="${board.language == '1'}">
-											<td>C</td>
-										</c:when>
-										<c:when test="${board.language == '2'}">
-											<td>C++</td>
-										</c:when>
-										<c:when test="${board.language == '3'}">
-											<td>C#</td>
-										</c:when>
-										<c:when test="${board.language == '4'}">
-											<td>Python</td>
-										</c:when>
-										<c:when test="${board.language == '5'}">
-											<td>JAVA</td>
-										</c:when>
-										<c:when test="${board.language == '6'}">
-											<td>CSS</td>
-										</c:when>
-										<c:when test="${board.language == '7'}">
-											<td>HTML</td>
-										</c:when>
-										<c:when test="${board.language == '8'}">
-											<td>JSON</td>
-										</c:when>
-										<c:when test="${board.language == '9'}">
-											<td>JavaScript</td>
-										</c:when>
-										<c:when test="${board.language == '10'}">
-											<td>PHP</td>
-										</c:when>
-										<c:when test="${board.language == '11'}">
-											<td>SQL</td>
-										</c:when>
-										<c:when test="${board.language == '12'}">
-											<td>AutoHotkey</td>
-										</c:when>
-								</c:choose>
+								<td>${board.language}</td>
 								<td>${board.id}</td>
 								<td><fmt:formatDate value="${board.reg_date}"
 										pattern="yyyy-MM-dd" /></td>
@@ -217,15 +188,28 @@
 			href += "&search=" + "${search.search}" + "&searchType="+ "${search.searchType}";
 			location.href = href;
 		}
-		jQuery(document).ready(function(){
+		// jQuery(document).ready(function(){
 		    
-		    var select = $("select#color");
-		    
-		    select.change(function(){
-		        var select_name = $(this).children("option:selected").text();
-		        $(this).siblings("label").text(select_name);
-		    });
+		var select = $("select#color");
+		select.change(function(){
+		    var select_name = $(this).children("option:selected").text();
+		    $(this).siblings("label").text(select_name);
 		});
+		var langsel = $("select#collang");
+		langsel.change(function(){
+		    var select_name = $(this).children("option:selected").text();
+			$(this).siblings("label").text(select_name);
+			// $.ajax({
+			// 	url : "/",
+			// 	type : "POST",
+			// 	cache : false,
+			// 	data : "language="+select_name,
+			// 	success : function(response){
+			// 		console.log(response);
+			// 	}
+			// });	
+		});
+		// });
 		$(document).ready(function() { 
 			var placeholderTarget = $('.textbox input[type="text"]'); 
 			//포커스시

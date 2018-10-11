@@ -30,7 +30,8 @@
 		title = #{title},
 		id = #{id},
 		body = #{body},
-		code=#{code}
+		code=#{code},
+		language=#{language}
 		where bno = #{bno}
 	</update>
 	<insert id="write_post">
@@ -39,6 +40,12 @@
 	</insert>
 	<select id="getCount" resultType="java.lang.Integer">
 		select count(*) from tbl_board;
+	</select>
+	<select id="getLang" resultType="com.inhatc.domain.BoardVO">
+		select distinct language from tbl_board;
+	</select>
+	<select id="langSearch" resultType="com.inhatc.domain.BoardVO">
+		select * from tbl_board where langauge=#{language};
 	</select>
 	<select id="selectPage" resultType="com.inhatc.domain.BoardVO">
 		select * from tbl_board

@@ -9,7 +9,7 @@ public class BoardVO {
 	private Date reg_date;
 	private int hits;
 	private String body;
-	private int language;
+	private String language;
 	private String code;
 	public int getBno() {
 		return bno;
@@ -47,10 +47,10 @@ public class BoardVO {
 	public void setBody(String body) {
 		this.body = body;
 	}
-	public int getLanguage() {
+	public String getLanguage() {
 		return language;
 	}
-	public void setLanguage(int language){
+	public void setLanguage(String language){
 		this.language=language;
 	}
 	public String getCode() {

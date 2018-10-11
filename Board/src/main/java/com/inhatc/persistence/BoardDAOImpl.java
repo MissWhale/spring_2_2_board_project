@@ -24,6 +24,13 @@ public class BoardDAOImpl implements BoardDAO {
 	public List<BoardVO> listAll() throws Exception {
 		return session.selectList(namespace+".allSelect");
 	}
+	public List<BoardVO> getLang() throws Exception {
+		return session.selectList(namespace+".getLang");
+	}
+	public List<BoardVO> langSearch(String language) throws Exception {
+		System.out.println("다오임플"+language);
+		return session.selectList(namespace+".langSearch",language);
+	}
 
 	@Override
 	public BoardVO read(int bno) throws Exception {
@@ -87,6 +94,7 @@ public class BoardDAOImpl implements BoardDAO {
 		}
 		paramMap.put("searchType", sch.getSearchType());
 		paramMap.put("search", sch.getSearch());
+		paramMap.put("language", sch.getLanguage());
 		return session.selectList(namespace+".search_board", paramMap);
 	}
 
