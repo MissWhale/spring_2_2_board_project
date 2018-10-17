@@ -173,7 +173,7 @@
 		$("#loginbtn").click(function(){ //로그인
 			if($('#loginid').val()==''){
 				alert("아이디를 입력하세요.");
-			}else if($('loginpw').val()==''){
+			}else if($('#loginpw').val()==''){
 				alert("비밀번호를 입력하세요.");
 			}else{
 				$('#loginfrm').submit();

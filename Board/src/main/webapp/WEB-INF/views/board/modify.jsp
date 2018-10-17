@@ -42,7 +42,7 @@
 					<option value="ace/mode/abc">ABC</option>
 						<option value="ace/mode/actionscript">ActionScript</option>
 						<option value="ace/mode/ada">ADA</option>
-						<option value="ace/mode/apache_conf">Apache Conf</option>\
+						<option value="ace/mode/apache_conf">Apache Conf</option>
 						<option value="ace/mode/asciidoc">AsciiDoc</option>
 						<option value="ace/mode/asl">ASL</option>
 						<option value="ace/mode/assembly_x86">Assembly x86</option>

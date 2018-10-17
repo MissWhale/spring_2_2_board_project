@@ -6,6 +6,7 @@
 <html>
 <head>
 	<link rel="stylesheet" href="/resources/design.css" type="text/css"media="screen" />
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<title>코드 공유 게시판</title>
 	<style>
 		.clear {
@@ -64,12 +65,21 @@
 	<div id='cssmenu'>
 	</div>
 	<div id="search">
-		<form method="get">
+		<form method="get" id="langsearch">
 			<div id="select_box" style="top: 42px;left: -150px;margin-top: -40px;">
-				<label for="collang">Language</label>
-					<select name="searchType" id="collang">
+				<label for="collang" id="langname">All</label>
+					<select name="language" id="collang">
+					<option value="none" >All</option>
 						<c:forEach items="${langs}" var="lang">
-							<option value="${lang.language}">${lang.language}</option>
+							<c:choose>
+								<c:when test="${search.language==lang.language}">
+									<option value="${lang.language}" selected>${lang.language}</option>
+									<script>$("#langname")[0].innerText="${lang.language}"</script>
+								</c:when>
+								<c:otherwise>
+									<option value="${lang.language}">${lang.language}</option>
+								</c:otherwise>
+							</c:choose>
 						</c:forEach>
 					</select> 
 			</div>
@@ -168,7 +178,6 @@
 		</div>
 		<div class="clear"></div>
 	</div>
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script>
 		function new_write() {
 			href = "/board/write?";
@@ -199,6 +208,8 @@
 		langsel.change(function(){
 		    var select_name = $(this).children("option:selected").text();
 			$(this).siblings("label").text(select_name);
+			console.log(select_name);
+			$("#langsearch").submit();
 			// $.ajax({
 			// 	url : "/",
 			// 	type : "POST",

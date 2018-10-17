@@ -27,10 +27,6 @@ public class BoardDAOImpl implements BoardDAO {
 	public List<BoardVO> getLang() throws Exception {
 		return session.selectList(namespace+".getLang");
 	}
-	public List<BoardVO> langSearch(String language) throws Exception {
-		System.out.println("다오임플"+language);
-		return session.selectList(namespace+".langSearch",language);
-	}
 
 	@Override
 	public BoardVO read(int bno) throws Exception {
@@ -95,14 +91,22 @@ public class BoardDAOImpl implements BoardDAO {
 		paramMap.put("searchType", sch.getSearchType());
 		paramMap.put("search", sch.getSearch());
 		paramMap.put("language", sch.getLanguage());
+		System.out.println("searchtype"+sch.getSearchType());
+		System.out.println("search"+sch.getSearch());
+		System.out.println("language"+sch.getLanguage());
 		return session.selectList(namespace+".search_board", paramMap);
 	}
 
 	@Override
 	public int searchBoardCount(Search sch) throws Exception {
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		System.out.println(sch.getSearchType());
+		System.out.println(sch.getSearch());
+		System.out.println(sch.getLanguage());
 		paramMap.put("searchType", sch.getSearchType());
 		paramMap.put("search", sch.getSearch());
+		paramMap.put("language", "JavaScript");
+		System.out.println(paramMap.get("language"));
 		return session.selectOne(namespace+".search_board_count", paramMap);
 	}
 }

@@ -37,5 +37,6 @@
 	</classpathentry>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v9.0"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/ahrrl/Desktop/mariadb-java-client-2.3.0-javadoc.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

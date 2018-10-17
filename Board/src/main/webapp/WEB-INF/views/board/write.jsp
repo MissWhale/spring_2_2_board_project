@@ -37,12 +37,12 @@
 		<div id='cssmenu' style="height: 40px;position: relative;top: 30px;"></div>
 		<form method="post" id="write">
 			<div id="select_box" class="selbox">
-				<label for="color" style="top:10px" id="langname" >C</label>
+				<label for="color" style="top:10px" id="langname" >ABC</label>
 					<select name="language" id="color" style="min-height: 30px;height:30px">
 						<option value="ace/mode/abc">ABC</option>
 						<option value="ace/mode/actionscript">ActionScript</option>
 						<option value="ace/mode/ada">ADA</option>
-						<option value="ace/mode/apache_conf">Apache Conf</option>\
+						<option value="ace/mode/apache_conf">Apache Conf</option>
 						<option value="ace/mode/asciidoc">AsciiDoc</option>
 						<option value="ace/mode/asl">ASL</option>
 						<option value="ace/mode/assembly_x86">Assembly x86</option>

@@ -56,34 +56,72 @@
 		select *
 		from tbl_board
 		<where>
-			<if test="searchType != null">
-				<if test="search != null">
-					<if test="searchType eq 'id'">
-						id like CONCAT('%',#{search},'%')
+			<choose>
+				<when test="language !='none'">
+					<if test="language !=null">
+						language = #{language}
 					</if>
-					<if test="searchType eq 'title'">
-						title like CONCAT('%',#{search},'%')
+					<if test="searchType != null">
+						<if test="search != null">
+							<if test="searchType eq 'id'">
+								and id like CONCAT('%',#{search},'%')
+							</if>
+							<if test="searchType eq 'title'">
+								and title like CONCAT('%',#{search},'%')
+							</if>
+						</if>
 					</if>
-				</if>
-			</if>
+				</when>
+				<when test="language =='none'">
+					<if test="searchType != null">
+						<if test="search != null">
+							<if test="searchType eq 'id'">
+								id like CONCAT('%',#{search},'%')
+							</if>
+							<if test="searchType eq 'title'">
+								title like CONCAT('%',#{search},'%')
+							</if>
+						</if>
+					</if>
+				</when>
+			</choose>
 		</where>
 		order by bno desc
 		limit #{start}, #{end}
 	</select>
-	<select id="search_board_count" resultType="java.lang.Integer">
+	<select id="search_board_count" resultType="Integer">
 		select count(*)
 		from tbl_board
 		<where>
-			<if test="searchType != null">
-				<if test="search != null">
-					<if test="searchType eq 'id'">
-						id like CONCAT('%',#{search},'%')
+			<choose>
+				<when test="language !='none'">
+					<if test="language !=null">
+						language = #{language}
 					</if>
-					<if test="searchType eq 'title'">
-						title like CONCAT('%',#{search},'%')
+					<if test="searchType != null">
+						<if test="search != null">
+							<if test="searchType eq 'id'">
+								and id like CONCAT('%',#{search},'%')
+							</if>
+							<if test="searchType eq 'title'">
+								and title like CONCAT('%',#{search},'%')
+							</if>
+						</if>
 					</if>
-				</if>
-			</if>
+				</when>
+				<when test="language =='none'">
+					<if test="searchType != null">
+						<if test="search != null">
+							<if test="searchType eq 'id'">
+								id like CONCAT('%',#{search},'%')
+							</if>
+							<if test="searchType eq 'title'">
+								title like CONCAT('%',#{search},'%')
+							</if>
+						</if>
+					</if>
+				</when>
+			</choose>
 		</where>
 	</select>
 </mapper>

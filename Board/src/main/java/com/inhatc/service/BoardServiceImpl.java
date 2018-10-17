@@ -25,10 +25,6 @@ public class BoardServiceImpl implements BoardService {
 		// TODO Auto-generated method stub
 		return dao.getLang();
 	}
-	public List<BoardVO> langSearch(String language) throws Exception {
-		// TODO Auto-generated method stub
-		return dao.langSearch(language);
-	}
 	@Override
 	public BoardVO read(int bno) throws Exception {
 		return dao.read(bno);
